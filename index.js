@@ -1,11 +1,13 @@
 document.querySelectorAll(".drum").forEach((item) => {
   item.addEventListener("click", function () {
     makeSound(this.innerHTML);
+    buttonAnimation(this.innerHTML);
   });
 });
 
 document.addEventListener("keydown", function (event) {
   makeSound(event.key);
+  buttonAnimation(event.key);
 });
 
 function makeSound(key) {
@@ -48,4 +50,13 @@ function makeSound(key) {
     default:
       console.log("Wrong input pressed");
   }
+}
+
+function buttonAnimation(currentKey) {
+  var activeButton = document.querySelector("." + currentKey);
+  activeButton.classList.add("pressed");
+
+  setTimeout(() => {
+    activeButton.classList.remove("pressed");
+  }, 200);
 }
